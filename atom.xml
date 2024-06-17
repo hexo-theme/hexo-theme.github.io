@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>NesT</title>
   
-  
+  <subtitle>MC Personal Nest</subtitle>
   <link href="https://mc.is-local.org/index/atom.xml" rel="self"/>
   
   <link href="https://mc.is-local.org/index/"/>
