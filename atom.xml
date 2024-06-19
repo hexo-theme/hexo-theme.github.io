@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>NesT</title>
+  <title>Tommas Blog</title>
   
-  <subtitle>MC Personal Nest</subtitle>
+  <subtitle>Tommas Personal Blog</subtitle>
   <link href="https://hexo-theme.github.io/atom.xml" rel="self"/>
   
   <link href="https://hexo-theme.github.io/"/>
