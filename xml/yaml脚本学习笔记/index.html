@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>YAML脚本学习笔记 - NesT</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f7f7f7"><meta name="application-name" content="NesT - MC Hexo NesT"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="msapplication-TileColor" content="#f7f7f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="NesT - MC Hexo NesT"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="YAML是“另一种标记语言”的外语缩写；但为了强调这种语言以数据做为中心，而不是以置标语言为重点，而用返璞词重新命名。它是一种直观的能够被电脑识别的数据序列化格式，是一个可读性高并且容易被人类阅读，容易和脚本语言交互，用来表达资料序列的编程语言。 它是类似于标准通用标记语言的子集XML的数据描述语言，语法比XML简单很多。"><meta property="og:type" content="blog"><meta property="og:title" content="YAML脚本学习笔记"><meta property="og:url" content="https://hexo-theme.github.io/xml/yaml%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="NesT"><meta property="og:description" content="YAML是“另一种标记语言”的外语缩写；但为了强调这种语言以数据做为中心，而不是以置标语言为重点，而用返璞词重新命名。它是一种直观的能够被电脑识别的数据序列化格式，是一个可读性高并且容易被人类阅读，容易和脚本语言交互，用来表达资料序列的编程语言。 它是类似于标准通用标记语言的子集XML的数据描述语言，语法比XML简单很多。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://s2.loli.net/2023/04/16/pWn3RYiD86aGONA.png"><meta property="article:published_time" content="2017-12-03T04:34:36.000Z"><meta property="article:author" content="onxs"><meta property="article:tag" content="yml"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://s2.loli.net/2023/04/16/pWn3RYiD86aGONA.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hexo-theme.github.io/xml/yaml%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"},"headline":"YAML脚本学习笔记","image":["https://s2.loli.net/2023/04/16/pWn3RYiD86aGONA.png"],"datePublished":"2017-12-03T04:34:36.000Z","author":{"@type":"Person","name":"onxs"},"publisher":{"@type":"Organization","name":"NesT","logo":{"@type":"ImageObject","url":"https://s2.loli.net/2024/06/17/NuUV4Rh7djekMfF.png"}},"description":"YAML是“另一种标记语言”的外语缩写；但为了强调这种语言以数据做为中心，而不是以置标语言为重点，而用返璞词重新命名。它是一种直观的能够被电脑识别的数据序列化格式，是一个可读性高并且容易被人类阅读，容易和脚本语言交互，用来表达资料序列的编程语言。 它是类似于标准通用标记语言的子集XML的数据描述语言，语法比XML简单很多。"}</script><link rel="canonical" href="https://hexo-theme.github.io/xml/yaml%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="alternate" href="/path/to/atom.xml" title="NesT" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0">
+<style>.not-gallery-item { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .not-gallery-item > span { position: relative; z-index: 10; }  .not-gallery-item img, .not-gallery-item .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .not-gallery-item img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .not-gallery-item-fallback { color: inherit; } .not-gallery-item-fallback img { opacity: 0 !important; }</style>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://s2.loli.net/2024/06/17/NuUV4Rh7djekMfF.png" alt="NesT" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/onxs/index/discussions"><i class="fas fa-comments"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/onxs"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2017-12-03T04:34:36.000Z" title="12/3/2017, 12:34:36 PM">2017-12-03</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/xml/">xml</a></span><span class="level-item">22 分钟读完 (大约3296个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">YAML脚本学习笔记</h1><div class="content"><p><img src="https://s2.loli.net/2023/04/16/pWn3RYiD86aGONA.png"></p>
+<p>YAML是“另一种标记语言”的外语缩写；但为了强调这种语言以数据做为中心，而不是以置标语言为重点，而用返璞词重新命名。它是一种直观的能够被电脑识别的数据序列化格式，是一个可读性高并且容易被人类阅读，容易和脚本语言交互，用来表达资料序列的编程语言。
+它是类似于标准通用标记语言的子集XML的数据描述语言，语法比XML简单很多。</p>
+<span id="more"></span>
+<p>诞生
+YAML参考了其他多种语言，包括：XML、C语言、Python、Perl以及电子邮件格式RFC2822。
+Clark Evans在2001年5月在首次发表了这种语言，另外Ingy döt Net与Oren Ben-Kiki也是这语言的共同设计者。
+命名
+YAML是”YAML Ain’t a Markup Language”（YAML不是一种置标语言）的递归缩写。
+在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种置标语言），
+功能
+YAML的语法和其他高阶语言类似，并且可以简单表达清单、散列表，标量等资料形态、。
+它使用空白符号缩排和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种设定档、倾印除错内容、文件大纲（例如：许多电子邮件标题格式和YAML非常接近）。
+尽管它比较适合用来表达阶层式（hierarchical model）的数据结构，不过也有精致的语法可以表示关联性（relational model）的资料。
+由于YAML使用空白字符和分行来分隔资料，使的他特别适合用grep、Python、Perl、Ruby操作。
+其让人最容易上手的特色是巧妙避开各种封闭符号，如：引号、各种括号等，这些符号在嵌套结构中会变得复杂而难以辨认。</p>
+<h1 id="YAML预研文档"><a href="#YAML预研文档" class="headerlink" title="YAML预研文档"></a>YAML预研文档</h1><h2 id="YAML概要"><a href="#YAML概要" class="headerlink" title="YAML概要"></a>YAML概要</h2><p><a target="_blank" rel="noopener" href="http://yaml.org/">YAML</a>是”YAML Ain’t a Markup Language”（YAML不是一种置标语言）的递归缩写，早先YAML的意思其实是：”Yet Another Markup Language”（另外一种置标语言），但为了强调这种语言以数据做为中心，而不是以置标语言为重点，而用返璞词重新命名，YAML的官方定义很简单，即<strong>一种人性化的数据格式定义语言</strong>，其主要功能用途类似于XML或JSON，YAML使用空白字符和分行来分隔数据，且巧妙避开各种封闭符号，如：引号、括号等，以避免这些符号在复杂层次结构中变得难以辨认。YAML的语法与高阶语言类似，可以很简单地表述<em>序列（java中的list）、杂凑表（java中的map）、标量（java中的基本类型等）</em>数据结构，它重点强调可阅读性。</p>
+<h2 id="YAML-vs-XML"><a href="#YAML-vs-XML" class="headerlink" title="YAML vs XML"></a>YAML vs XML</h2><p>与YAML相似的数据格式定义语言是XML，YAML比XML优越性表现在</p>
+<blockquote>
+<p><strong>优势:</strong></p>
+</blockquote>
+<blockquote>
+<ul>
+<li>YAML的可读性好</li>
+<li>YAML和脚本语言的交互性好</li>
+<li>YAML使用实现语言的数据类型</li>
+<li>YAML有一个一致的信息模型</li>
+<li>YAML易于实现</li>
+</ul>
+</blockquote>
+<p>上面5条是XML不足的地方，同时，YAML也具有XML的下列优点：</p>
+<blockquote>
+<ul>
+<li>YAML可以基于流来处理</li>
+<li>YAML表达能力强，扩展性好</li>
+</ul>
+</blockquote>
+<p>YAML类似于XML的数据描述语言，语法比XML简单很多，YAML试图用一种比XML更敏捷的方式，来完成XML所完成的任务。</p>
+<hr>
+<h2 id="YAML-vs-JSON"><a href="#YAML-vs-JSON" class="headerlink" title="YAML vs JSON"></a>YAML vs JSON</h2><p>JSON的语法其实是YAML的子集，大部分的JSON文件都可以被YAML的剖析器剖析。虽然大部分的数据分层形式也可以使用类似JSON的格式，不过YAML并不建议这样使用，除非这样编写能让文件可读性增加，更重要的是，YAML的许多扩展在JSON是找不到的，如：<em>进阶资料形态</em>、<em>关系锚点</em>、<em>字串不需要引号</em>、<em>映射资料形态会储存键值的顺序</em>等。</p>
+<h2 id="YAML用途"><a href="#YAML用途" class="headerlink" title="YAML用途"></a>YAML用途</h2><h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h3><p>由于实现简单，解析成本很低，YAML特别适合在脚本语言中使用。列一下现有的语言实现：Ruby，Java，Perl，Python，PHP，OCaml，JavaScript，除了Java，其他都是脚本语言。</p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>YAML比较适合做序列化。因为它是宿主语言数据类型直转的。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>YAML做配置文件也不错。写YAML要比写XML快得多(<strong>无需关注标签或引号</strong>)，并且比ini文档功能更强。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>由于其很强的阅读性，用于调试过程中dump出信息供分析也是一种比较方便的做法。</p>
+<h2 id="YAML缺陷与不足"><a href="#YAML缺陷与不足" class="headerlink" title="YAML缺陷与不足"></a>YAML缺陷与不足</h2><p>YAML没有自己的数据类型的定义，而是使用实现语言的数据类型。一个YAML文件，在不同语言中解析后得到的数据类型可能会不同，由于其兼容性问题，不同语言间的数据流转不建议使用YAML。</p>
+<h2 id="YAML语法与范例"><a href="#YAML语法与范例" class="headerlink" title="YAML语法与范例"></a>YAML语法与范例</h2><blockquote>
+<ul>
+<li>YAML使用可打印的Unicode字符，可使用UTF-8或UTF-16</li>
+<li>使用<strong>空白字符</strong>（不能使用<kbd>Tab</kbd>）分层，同层元素左侧对齐</li>
+<li>单行注解由井字号（<kbd> #</kbd> ）开始，可以出现在行中任何位置</li>
+<li>每个清单成员以单行表示，并用短杠+空白（<kbd>-  </kbd>）起始</li>
+<li>每个杂凑表的成员用冒号+空白（<kbd>:  </kbd>）分开键和值</li>
+<li>杂凑表的键值可以用问号 (<kbd>?</kbd>)起始，表示多个词汇组成的键值</li>
+<li>字串一般不使用引号，但必要的时候可以用引号框住</li>
+<li>使用双引号表示字串时，可用倒斜线（<kbd>&lt;/kbd&gt;）进行特殊字符转义</kbd></li>
+<li>区块的字串用缩排和修饰词（非必要）来和其他资料分隔，有新行保留（使用符号<kbd>|</kbd>）或新行折叠（使用符号<kbd>&gt;</kbd>）两种方式</li>
+<li>在单一档案中，可用连续三个连字号（<kbd>---</kbd>）区分多个档案</li>
+<li>可选择性的连续三个点号（<kbd>...</kbd>）用来表示档案结尾(在流式传输时非常有用，不需要关闭流即可知道到达结尾处)</li>
+<li>重复的内容可使从参考标记星号 (<kbd>*</kbd>)复制到锚点标记（<kbd>&amp;</kbd>）</li>
+<li>指定格式可以使用两个惊叹号 ( !! )，后面接上名称</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">receipt:     Oz-Ware Purchase Invoice</span><br><span class="line">date:        2007-08-06</span><br><span class="line">customer:</span><br><span class="line">    given:   Dorothy</span><br><span class="line">    family:  Gale</span><br><span class="line">items:</span><br><span class="line">    - part_no:   A4786</span><br><span class="line">      descrip:   Water Bucket (Filled)</span><br><span class="line">      price:     1.47</span><br><span class="line">      quantity:  4</span><br><span class="line">    - part_no:   E1628</span><br><span class="line">      descrip:   High Heeled "Ruby" Slippers </span><br><span class="line">      price:     100.27</span><br><span class="line">      quantity:  1</span><br><span class="line">bill-to:  &amp;id001</span><br><span class="line">    street: | </span><br><span class="line">            123 Tornado Alley</span><br><span class="line">            Suite 16</span><br><span class="line">    city:   East Westville</span><br><span class="line">    state:  KS</span><br><span class="line">ship-to:  *id001   </span><br><span class="line">specialDelivery:  &gt;</span><br><span class="line">    Follow the Yellow Brick</span><br><span class="line">    Road to the Emerald City.</span><br><span class="line">    Pay no attention to the </span><br><span class="line">    man behind the curtain.</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
+<p>这个文件的的顶层由七个键值组成：其中一个键值”items”，是个两个元素构成的清单，清单中的两个元素同时也是包含了四个键值的杂凑表。
+文件中重复的部分处理方式：使用锚点（&amp;）和参考（*）标签将”bill-to”杂凑表的内容复制到”ship-to”杂凑表。也可以在文件中加入选择性的空行，以增加可读性。</p>
+<h2 id="YAML的JAVA实现"><a href="#YAML的JAVA实现" class="headerlink" title="YAML的JAVA实现"></a>YAML的JAVA实现</h2><p>YAML已经有了多种语言不少实现，详见<a target="_blank" rel="noopener" href="http://yaml.org/">YAML官网</a>。
+一般YAML文件扩展名为.yaml，比如John.yaml，其内容为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name: John Smith</span><br><span class="line">age: 37</span><br><span class="line">children:</span><br><span class="line">    - name: Jimmy Smith</span><br><span class="line">      age: 15</span><br><span class="line">    - name: Jenny Smith</span><br><span class="line">      age: 12</span><br><span class="line">spouse:</span><br><span class="line">    name: Jane Smith</span><br><span class="line">    age: 25</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>由于yaml的超强可读性，我们了解到：John今年37岁，两个孩子Jimmy 和Jenny活泼可爱，妻子Jane年轻美貌，而且年仅25岁，一个幸福的四口之家。
+对John.yaml进行java描述，抽象出一个Person类，如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Person {</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line">    private Person sponse;</span><br><span class="line">    private Person[] children;</span><br><span class="line">    // setXXX, getXXX方法略.</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>现在我们使用java装配一个Jone：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Person john = new Person();</span><br><span class="line">john.setAge(37);</span><br><span class="line">john.setName("John Smith");</span><br><span class="line">Person sponse = new Person();</span><br><span class="line">sponse.setName("Jane Smith");</span><br><span class="line">sponse.setAge(25);</span><br><span class="line">john.setSponse(sponse);</span><br><span class="line">Person[] children = {new Person(), new Person()};</span><br><span class="line">children[0].setName("Jimmy Smith");</span><br><span class="line">children[0].setAge(15);</span><br><span class="line">children[1].setName("Jenny Smith");</span><br><span class="line">children[1].setAge(12);</span><br><span class="line">john.setChildren(children);</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="使用SnakeYAML实现"><a href="#使用SnakeYAML实现" class="headerlink" title="使用SnakeYAML实现"></a>使用SnakeYAML实现</h3><p>项目主页：<a target="_blank" rel="noopener" href="http://code.google.com/p/snakeyaml/">http://code.google.com/p/snakeyaml/</a>
+使用手册：<a target="_blank" rel="noopener" href="https://code.google.com/p/snakeyaml/wiki/Documentation">https://code.google.com/p/snakeyaml/wiki/Documentation</a>
+SnakeYAML是一个标准的YAML的java实现，它有以下特点：</p>
+<blockquote>
+<ul>
+<li>完全支持YAML 1.1，可以跑通规范中的所有示例</li>
+<li>支持YAML的所有类型</li>
+<li>支持UTF-8/UTF-16的输入和输出</li>
+<li>提供了本地java对象的序列化和反序列化的高层API</li>
+<li>提供相对合理的错误提示信息</li>
+</ul>
+</blockquote>
+<p>使用SnakeYAML将john dump出来，<strong>如果有引用相同对象，则dump出到yaml文件会自动使用<kbd>&amp;</kbd>和<kbd>*</kbd>进行锚点和引用</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DumperOptions options = new DumperOptions();</span><br><span class="line">options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);</span><br><span class="line">Yaml yaml = new Yaml(options);</span><br><span class="line">//Yaml yaml = new Yaml();</span><br><span class="line">String dump = yaml.dump(john);</span><br><span class="line">System.out.println(dump);</span><br></pre></td></tr></tbody></table></figure>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">!!Person</span><br><span class="line">age: 37</span><br><span class="line">children:</span><br><span class="line">- age: 15</span><br><span class="line">  children: null</span><br><span class="line">  name: Jimmy Smith</span><br><span class="line">  sponse: null</span><br><span class="line">- age: 12</span><br><span class="line">  children: null</span><br><span class="line">  name: Jenny Smith</span><br><span class="line">  sponse: null</span><br><span class="line">name: John Smith</span><br><span class="line">sponse:</span><br><span class="line">  age: 25</span><br><span class="line">  children: null</span><br><span class="line">  name: Jane Smith</span><br><span class="line">  sponse: null</span><br></pre></td></tr></tbody></table></figure>
+<p>现在用SnakeYAML把yaml load进来，<strong>如果yaml文件中使用了<kbd>&amp;</kbd>和<kbd>*</kbd>，则会自动对load出来的对象赋相同的值</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Yaml yaml = new Yaml();</span><br><span class="line">Object load = yaml.load(new FileInputStream(new File("jhon.yaml")));</span><br><span class="line">System.out.println(load.getClass());</span><br><span class="line">System.out.println(yaml.dump(load));</span><br></pre></td></tr></tbody></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Yaml yaml = new Yaml(options);</span><br><span class="line">Person person = yaml.loadAs(inputStream, Person.class);</span><br><span class="line">System.out.println(person.getSponse().getChildren().length);</span><br></pre></td></tr></tbody></table></figure>
+<p>如果一个yaml文件中有多个文档，由<kbd>---</kbd>分割，解析如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Yaml yaml = new Yaml();</span><br><span class="line">        int counter = 0;</span><br><span class="line">        for (Object data : yaml.loadAll(input)) {</span><br><span class="line">            System.out.println(data);</span><br><span class="line">            counter++;</span><br><span class="line">        }</span><br></pre></td></tr></tbody></table></figure>
+<p>保存一个Map对象：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();</span><br><span class="line">        data.put("name", "Silenthand Olleander");</span><br><span class="line">        data.put("race", "Human");</span><br><span class="line">        data.put("traits", new String[] { "ONE_HAND", "ONE_EYE" });</span><br><span class="line">        Yaml yaml = new Yaml();</span><br><span class="line">        String output = yaml.dump(data);</span><br><span class="line">        System.out.println(output);</span><br><span class="line">    // or</span><br><span class="line">    StringWriter writer = new StringWriter();</span><br><span class="line">    yaml.dump(data, writer);</span><br><span class="line">    System.out.println(writer.toString());</span><br></pre></td></tr></tbody></table></figure>
+<p>将多个文档dump出到同一个yaml文件中去：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; docs = new LinkedList&lt;Integer&gt;();</span><br><span class="line">    for (int i = 1; i &lt; 4; i++) {</span><br><span class="line">        docs.add(i);</span><br><span class="line">    }</span><br><span class="line">    DumperOptions options = new DumperOptions();</span><br><span class="line">    //options.setCanonical(true);</span><br><span class="line">    options.explicitStart(true);</span><br><span class="line">    Yaml yaml = new Yaml(options);</span><br><span class="line">    System.out.println(yaml.dump(docs));</span><br><span class="line">    System.out.println(yaml.dumpAll(docs.iterator()));</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--- [1, 2, 3]</span><br><span class="line"></span><br><span class="line">--- 1</span><br><span class="line">--- 2</span><br><span class="line">--- 3</span><br></pre></td></tr></tbody></table></figure>
+<p>YAML与java类型对照表：</p>
+<table>
+<thead>
+<tr>
+<th>YAML</th>
+<th>JAVA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>!null</td>
+<td>null</td>
+</tr>
+<tr>
+<td>!!bool</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>!!int</td>
+<td>Integer, Long, BigInteger</td>
+</tr>
+<tr>
+<td>!!float</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>!!binary</td>
+<td>String</td>
+</tr>
+<tr>
+<td>!!timestamp</td>
+<td>java.util.Date, java.sql.Date, java.sql.Timestamp</td>
+</tr>
+<tr>
+<td>!!omap, !!pairs</td>
+<td>List of Object[]</td>
+</tr>
+<tr>
+<td>!!set</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>!!str</td>
+<td>String</td>
+</tr>
+<tr>
+<td>!!seq</td>
+<td>List</td>
+</tr>
+<tr>
+<td>!!map</td>
+<td>Map</td>
+</tr>
+</tbody></table>
+<p>集合的默认实现是：</p>
+<blockquote>
+<ul>
+<li>List:  ArrayList</li>
+<li>Map:  LinkedHashMap</li>
+</ul>
+</blockquote>
+<h3 id="使用JYaml实现"><a href="#使用JYaml实现" class="headerlink" title="使用JYaml实现"></a>使用JYaml实现</h3><p>JYaml（<strong>最新版本是2007年的，可以考虑放弃了</strong>），使用JYaml把Jone “Dump” 出来：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File dumpfile = new File("John_dump.yaml");</span><br><span class="line">Yaml.dump(john, dumpfile);</span><br></pre></td></tr></tbody></table></figure>
+<p>下面我们看看John_dump.yaml是什么样子：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--- !yaml.test.internal.Person</span><br><span class="line">age: 37</span><br><span class="line">children: !yaml.test.internal.Person[]</span><br><span class="line">  - !yaml.test.internal.Person</span><br><span class="line">    age: 15</span><br><span class="line">    name: Jimmy Smith</span><br><span class="line">  - !yaml.test.internal.Person</span><br><span class="line">    age: 12</span><br><span class="line">    name: Jenny Smith</span><br><span class="line">name: John Smith</span><br><span class="line">sponse: !yaml.test.internal.Person</span><br><span class="line">  age: 25</span><br><span class="line">  name: Jane Smith</span><br></pre></td></tr></tbody></table></figure>
+<p>其中!yaml.test.internal.Person是一些类型的信息。load的时候需要用。
+现在用JYaml把Jone_dump.yaml load进来：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person john2 = (Person) Yaml.loadType(dumpfile, Person.class);</span><br></pre></td></tr></tbody></table></figure>
+<p>还可以用下面的代码dump出没有类型信息的John.yaml：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Yaml.dump(john,dumpfile, true);</span><br></pre></td></tr></tbody></table></figure>
+<p>我们再来看看JYaml对流处理的支持，为简便起见，我们只是把同一个john写10次：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> YamlEncoder enc = new YamlEncoder(new FileOutputStream(dumpfile));</span><br><span class="line"> for(int i=0; i&lt;10; i++){</span><br><span class="line">     john.setAge(37+i);</span><br><span class="line">     enc.writeObject(john);</span><br><span class="line">     enc.flush();</span><br><span class="line"> }</span><br><span class="line">enc.close();</span><br></pre></td></tr></tbody></table></figure>
+<p>下面再把这十个对象一个一个读出来（注意while循环退出的方式）：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">YamlDecoder dec = new YamlDecoder(new FileInputStream(dumpfile));</span><br><span class="line">int age = 37;</span><br><span class="line">while(true){</span><br><span class="line">    try{</span><br><span class="line">        john = (Person) dec.readObject();</span><br><span class="line">        assertEquals(age, john.getAge());</span><br><span class="line">        age++;</span><br><span class="line">    }catch(EOFException eofe){</span><br><span class="line">        break;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><h4 id="多行缩进"><a href="#多行缩进" class="headerlink" title="多行缩进"></a>多行缩进</h4><p>数据结构可以用类似大纲的缩排方式呈现，结构通过缩进来表示，连续的项目通过减号“-”来表示，map结构里面的key/value对用冒号“:”来分隔。样例如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">house:</span><br><span class="line">  family:</span><br><span class="line">    name: Doe</span><br><span class="line">    parents:</span><br><span class="line">      - John</span><br><span class="line">      - Jane</span><br><span class="line">    children:</span><br><span class="line">      - Paul</span><br><span class="line">      - Mark</span><br><span class="line">      - Simone</span><br><span class="line">  address:</span><br><span class="line">    number: 34</span><br><span class="line">    street: Main Street</span><br><span class="line">    city: Nowheretown</span><br><span class="line">    zipcode: 12345</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>字串不一定要用双引号标识；</p>
+<p>在缩排中空白字符的数目并不是非常重要，只要相同阶层的元素左侧对齐就可以了（不过不能使用TAB字符）；</p>
+<p>允许在文件中加入选择性的空行，以增加可读性；</p>
+<p>在一个档案中，可同时包含多个文件，并用“——”分隔；</p>
+<p>选择性的符号“…”可以用来表示档案结尾（在利用串流的通讯中，这非常有用，可以在不关闭串流的情况下，发送结束讯号）。</p>
+<h4 id="单行缩写"><a href="#单行缩写" class="headerlink" title="单行缩写"></a>单行缩写</h4><p>YAML也有用来描述好几行相同结构的数据的缩写语法，数组用’[]’包括起来，hash用’{}’来包括。因此，上面的这个YAML能够缩写成这样:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">house:</span><br><span class="line">  family: { name: Doe, parents: [John, Jane], children: [Paul, Mark, Simone] }</span><br><span class="line">  address: { number: 34, street: Main Street, city: Nowheretown, zipcode: 12345 }</span><br></pre></td></tr></tbody></table></figure>
+</div><div class="article-licensing box"><div class="licensing-title"><p>YAML脚本学习笔记</p><p><a href="https://hexo-theme.github.io/xml/yaml脚本学习笔记/">https://hexo-theme.github.io/xml/yaml脚本学习笔记/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>onxs</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-12-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/yml/">yml</a></div><div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a class="bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a><a class="bds_tsina" href="#" data-cmd="tsina" title="分享到新浪微博"></a><a class="bds_tqq" href="#" data-cmd="tqq" title="分享到腾讯微博"></a><a class="bds_renren" href="#" data-cmd="renren" title="分享到人人网"></a><a class="bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a></div><script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Think/%E7%A9%B7%E5%BF%99%E6%97%8F%E7%9A%84%E4%BA%BA%E7%94%9F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">穷忙族的人生</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Think/%E8%AE%BA%E5%B7%A5%E4%B8%9A%E7%A4%BE%E4%BC%9A%E5%8F%8A%E5%85%B6%E6%9C%AA%E6%9D%A5/"><span class="level-item">论工业社会及其未来</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://s2.loli.net/2024/05/04/r4KT1NyzbACneI7.gif" alt="CO CO"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">CO CO</p><p class="is-size-6 is-block">Java Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China, Web System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">14</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/onxs" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/onxs"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Freemaker/"><span class="level-start"><span class="level-item">Freemaker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JQuery/"><span class="level-start"><span class="level-item">JQuery</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Think/"><span class="level-start"><span class="level-item">Think</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/ajax/"><span class="level-start"><span class="level-item">ajax</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/backend/"><span class="level-start"><span class="level-item">backend</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/frontEnd/"><span class="level-start"><span class="level-item">frontEnd</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/gradle/"><span class="level-start"><span class="level-item">gradle</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/idea/"><span class="level-start"><span class="level-item">idea</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/maven/"><span class="level-start"><span class="level-item">maven</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/xml/"><span class="level-start"><span class="level-item">xml</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-05-04T11:36:00.000Z">2024-05-04</time></p><p class="title"><a href="/Think/%E5%B8%8C%E6%9C%9B%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BC%98%E7%A7%80%E7%9A%84%E4%BA%BA/">希望你是一个优秀的人</a></p><p class="categories"><a href="/categories/Think/">Think</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-05-02T16:00:00.000Z">2024-05-03</time></p><p class="title"><a href="/Think/%E4%BA%BA%E6%80%A7%E7%9A%84%E5%BC%B1%E7%82%B9/">人性的弱点</a></p><p class="categories"><a href="/categories/Think/">Think</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-05-01T16:00:00.000Z">2024-05-02</time></p><p class="title"><a href="/idea/%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%BA%94%E8%AF%A5%E6%B4%BB%E5%BE%97%E6%98%AF%E8%87%AA%E5%B7%B1%E5%B9%B6%E4%B8%94%E5%B9%B2%E5%87%80/">一个人应该活得是自己并且干净</a></p><p class="categories"><a href="/categories/idea/">idea</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-30T16:00:00.000Z">2024-05-01</time></p><p class="title"><a href="/Think/%E4%BD%99%E7%94%9F%EF%BC%8C%E6%84%BF%E4%BD%A0%E6%B4%BB%E5%87%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B2%BE%E5%BD%A9/">余生，愿你活出自己的精彩</a></p><p class="categories"><a href="/categories/Think/">Think</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-03T16:00:00.000Z">2024-04-04</time></p><p class="title"><a href="/idea/%E7%8B%97%E6%97%A5%E7%9A%84%E4%B8%AD%E5%B9%B4/">狗日的中年</a></p><p class="categories"><a href="/categories/idea/">idea</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">五月 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">五月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">一月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/09/"><span class="level-start"><span class="level-item">九月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/10/"><span class="level-start"><span class="level-item">十月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Freemaker/"><span class="tag">Freemaker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JQuery/"><span class="tag">JQuery</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Think/"><span class="tag">Think</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ajax/"><span class="tag">ajax</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cms/"><span class="tag">cms</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gradle/"><span class="tag">gradle</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/idea/"><span class="tag">idea</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jeecms/"><span class="tag">jeecms</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/markdown/"><span class="tag">markdown</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/maven/"><span class="tag">maven</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/yml/"><span class="tag">yml</span><span class="tag">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://s2.loli.net/2024/06/17/NuUV4Rh7djekMfF.png" alt="NesT" height="28"></a><p class="is-size-7"><span>&copy; 2024 onxs</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Discuss on GitHub" href="https://github.com/onxs/index/discussions"><i class="fas fa-comments"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/onxs"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: true,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
